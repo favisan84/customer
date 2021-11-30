@@ -4,7 +4,9 @@ MAINTAINER Fabio Vieira
 
 VOLUME /config
 
-ADD target/customer.jar customer.jar
+ARG JAR_FILE=target/customer.jar
+
+COPY ${JAR_FILE} customer.jar
 
 ENV JAVA_OPTS="-Xmx256m -Xms256m -XX:MetaspaceSize=48m -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
 
