@@ -25,10 +25,8 @@ public class CustomerController {
             @ApiResponse(code = 404, message = "No data found"),
             @ApiResponse(code = 500, message = "Internal Error")
     })
-
-    
     public ResponseEntity test(){
-        log.info("test request from customer service");
-        return ResponseEntity.ok().body("OK");
+         return ResponseEntity.ok().body("OK");
     }
+
 }
