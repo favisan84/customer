@@ -1,4 +1,4 @@
-FROM openjdk:11-jre
+FROM openjdk:11-jre as release
 
 MAINTAINER Fabio Vieira
 
