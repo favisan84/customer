@@ -27,6 +27,7 @@ public class CustomerController {
     })
     public ResponseEntity test(){
          return ResponseEntity.ok().body("OK");
+
     }
 
 }
