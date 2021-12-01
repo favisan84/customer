@@ -26,10 +26,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Build with Maven
-        run:  mvn -B package --file pom.xml
-        working-directory: /app
-
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.4.1
         with:
@@ -69,7 +65,6 @@ jobs:
           RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.RELEASE_REVISION }}
         run: |
           docker buildx create --use
-        working-directory: /app
 
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
