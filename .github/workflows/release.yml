@@ -65,6 +65,10 @@ jobs:
           RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.RELEASE_REVISION }}
         run: |
           docker buildx create --use
+<<<<<<< HEAD
+=======
+        working-directory: /customer
+>>>>>>> 72686d09a231bf2b14b723bc0d86f835887da501
 
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
