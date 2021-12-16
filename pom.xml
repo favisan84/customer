@@ -22,6 +22,13 @@
 		<sonar.jacoco.reportsPaths>${project.build.directory}/jacoco.exec</sonar.jacoco.reportsPaths>
 		<sonar.tests>src/test/java</sonar.tests>
 		<sonar.projectKey>sonar-test</sonar.projectKey>
+		<sonar.exclusions>src/main/java/com/favisan84/customer/config/*.java,
+			src/main/java/br/com/rd/customer/util/*.java,
+			src/main/java/com/favisan84/customer/model/dto/*.java,
+			src/main/java/com/favisan84/customer/model/entity/*.java,
+			src/main/java/com/favisan84/customer/CustomerApplication.java,
+			src/main/java/com/favisan84/customer/service/bo/exceptions/*.java
+		</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -141,6 +148,14 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>com/favisan84/customer/config/*/**</exclude>
+						<exclude>com/favisan84/customer/model/dto/*/**</exclude>
+						<exclude>com/favisan84/customer/CustomerApplication.*</exclude>
+						<exclude>com/favisan84/customer/service/bo/exceptions/*/**</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
