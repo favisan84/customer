@@ -3,6 +3,7 @@ package com.favisan84.customer.service;
 import com.favisan84.customer.model.dto.CustomerDTO;
 import com.favisan84.customer.model.entity.CustomerEntity;
 import com.favisan84.customer.model.repository.CustomerRepository;
+import com.favisan84.customer.service.bo.exceptions.CustomerNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,11 +42,14 @@ public class CustomerService {
     }
 
     public CustomerDTO findByEmail(String email) {
-        Optional<CustomerEntity> optional = repository.findByEmail(email);
-        CustomerEntity entity = optional.isPresent() ? optional.get() : optional.orElseThrow();
         CustomerDTO customer = new CustomerDTO();
-        customer.setName(entity.getName());
-        customer.setEmail(entity.getEmail());
+        repository.findByEmail(email).ifPresentOrElse(
+                entity -> {
+                    customer.setName(entity.getName());
+                    customer.setEmail(entity.getEmail());
+                },
+               () -> {throw new CustomerNotFoundException("Email not found"); }
+        );
 
         return customer;
     }
